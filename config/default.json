@@ -1,3 +1,6 @@
 {
-    "mongoURI": "mongodb+srv://user_jnalis:user.jnalis.mongo@jnalisconnect-wmx42.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://user_jnalis:user.jnalis.mongo@jnalisconnect-wmx42.mongodb.net/test?retryWrites = true & w = majority ",
+
+    "jwtSecret": "mysecretetoken"
+
 }
