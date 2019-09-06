@@ -36,10 +36,12 @@ router.post('/', [
 
         if (!errors.isEmpty()) {
             return res.status(400)
-            .json({ errors: errors.array() });
+                .json({
+                    errors: errors.array()
+                });
         }
 
-        
+
 
         const {
             email,
@@ -48,16 +50,26 @@ router.post('/', [
 
         try {
             //See if user exist
-            let user = await User.findOne({ email });
+            let user = await User.findOne({
+                email
+            });
 
             if (!user) {
-                return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+                return res.status(400).json({
+                    errors: [{
+                        msg: 'Invalid Credentials'
+                    }]
+                });
             }
 
             const isMatch = await bcrypt.compare(password, user.password);
 
             if (!isMatch) {
-                return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+                return res.status(400).json({
+                    errors: [{
+                        msg: 'Invalid Credentials'
+                    }]
+                });
             }
 
             //Return jsonwebtoken
@@ -74,11 +86,11 @@ router.post('/', [
                 },
                 (err, token) => {
                     if (err) throw err;
+
                     res.json({
                         token
                     });
-                }
-            );
+                });
             //res.send('User registered');
 
         } catch (err) {
